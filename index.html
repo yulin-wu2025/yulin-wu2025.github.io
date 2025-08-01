@@ -3,56 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>自我介绍</title>
+  <title>我的个人网页</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* 自定义动画 */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
     }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.6;
-      background-color: #f5f5f5;
-      color: #333;
-      padding: 1rem;
-    }
-
-    header, main, footer {
-      max-width: 800px;
-      margin: auto;
-      padding: 1rem;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding: 0.5rem;
-      }
-
-      header, main, footer {
-        padding: 0.75rem;
-      }
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
-<body>
-  <header>
-    <h1>自我介绍</h1>
-  </header>
+<body class="bg-gradient-to-b from-gray-100 to-white text-gray-800 font-sans leading-relaxed">
 
-  <main>
+  <!-- 导航栏 -->
+  <nav class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">我的主页</h1>
+      <ul class="hidden md:flex space-x-6">
+        <li><a href="#about" class="hover:text-blue-500">关于我</a></li>
+        <li><a href="#hobby" class="hover:text-blue-500">爱好</a></li>
+        <li><a href="#contact" class="hover:text-blue-500">联系</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 自我介绍 -->
+  <section id="about" class="max-w-3xl mx-auto py-12 px-4 fade-in">
+    <h2 class="text-2xl font-bold mb-4 text-blue-600">关于我</h2>
     <p>
-      您好，我是一位性格开朗的吴雨霖、积极向上的人，平时喜欢打篮球，不仅锻炼身体，也培养了良好的团队协作能力。
-      在学习和上课中，我注重效率与责任感，乐于接受挑战，不断追求成长。希望有机会与您交流！
+      您好，我是一位性格开朗、积极向上的人，热爱网页设计与前端开发。平时喜欢打篮球，不仅锻炼身体，也提升了团队协作能力。
+      我注重细节、效率与责任感，乐于探索新技术，不断追求进步。
     </p>
-  </main>
+  </section>
 
-  <footer>
-    <p>&copy; 2025 版权所有</p>
-  </footer>
+  <!-- 爱好 -->
+  <section id="hobby" class="max-w-3xl mx-auto py-12 px-4 fade-in">
+    <h2 class="text-2xl font-bold mb-4 text-blue-600">我的爱好</h2>
+    <ul class="list-disc list-inside space-y-2">
+      <li>打篮球，提升体能与合作能力</li>
+      <li>网页设计与编程，表达创意</li>
+      <li>听音乐放松，提升专注力</li>
+    </ul>
+  </section>
+
+  <!-- 联系方式 -->
+  <section id="contact" class="max-w-3xl mx-auto py-12 px-4 fade-in">
+    <h2 class="text-2xl font-bold mb-4 text-blue-600">联系我</h2>
+    <p>邮箱：example@example.com</p>
+    <p>GitHub：<a href="https://github.com/yourname" class="text-blue-500 hover:underline">yourname</a></p>
+  </section>
+
+  <!-- 下载链接 -->
+  <section class="text-center py-12 fade-in">
+    <a
+      href="data:text/html;charset=utf-8,<!DOCTYPE html>%0A<html>...（略）"
+      download="personal_page.html"
+      class="inline-block bg-blue-500 text-white px-6 py-3 rounded-full hover:bg-blue-600 transition"
+    >
+      下载此网页
+    </a>
+  </section>
+
+  <!-- JavaScript 动画触发 -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
